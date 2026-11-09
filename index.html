@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caju | Catálogo de Semijoias</title>
+<meta name="description" content="Catálogo Caju: semijoias VERI by Veridiana Quirino. Peças únicas, peça a sua pelo WhatsApp.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Caju | Catálogo de Semijoias">
+<meta property="og:description" content="Semijoias VERI by Veridiana Quirino. Peças únicas, peça a sua pelo WhatsApp.">
+<meta property="og:image" content="https://cajubrand.github.io/catalogo-caju/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://cajubrand.github.io/catalogo-caju/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --creme:#FBF5EA; --magenta:#C2457A; --bordo:#7A1F33; --noite:#1F2A4D;
+    --petala:#5468B0; --mostarda:#E2B13C; --salvia:#7A9473;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--creme);color:var(--noite);font-family:'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  header{text-align:center;padding:36px 20px 18px}
+  .logo{font-family:'Caveat Brush',cursive;font-size:64px;line-height:1;color:var(--bordo)}
+  .sub{margin-top:6px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--noite);opacity:.75}
+  .mes{display:inline-block;margin-top:14px;padding:5px 14px;border-radius:999px;background:var(--noite);color:var(--creme);font-size:13px;font-weight:500}
+  .aviso{max-width:560px;margin:14px auto 0;font-size:13px;line-height:1.45;opacity:.75}
+  nav{position:sticky;top:0;z-index:5;background:var(--creme);padding:10px 14px;display:flex;gap:8px;overflow-x:auto;justify-content:center;border-bottom:1px solid rgba(31,42,77,.08)}
+  nav button{flex:none;font:500 14px 'DM Sans',sans-serif;padding:8px 16px;border-radius:999px;border:1.5px solid var(--noite);background:transparent;color:var(--noite);cursor:pointer}
+  nav button.on{background:var(--noite);color:var(--creme)}
+  main{max-width:1100px;margin:0 auto;padding:18px 14px 40px}
+  section{margin-bottom:34px}
+  h2{font-family:'Caveat Brush',cursive;font-weight:400;font-size:36px;margin:6px 4px 14px;display:flex;align-items:center;gap:10px}
+  h2 .dot{width:14px;height:14px;border-radius:50%}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(min-width:720px){.grid{grid-template-columns:repeat(3,1fr)}}
+  @media(min-width:980px){.grid{grid-template-columns:repeat(4,1fr)}}
+  .card{background:#fff;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(31,42,77,.06),0 6px 18px rgba(31,42,77,.06)}
+  .foto{position:relative;aspect-ratio:1/1;background:#f1ebe0}
+  .foto img{width:100%;height:100%;object-fit:cover;display:block}
+  .cod{position:absolute;top:10px;left:10px;background:var(--creme);color:var(--noite);font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px}
+  .info{padding:12px 12px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .nome{font-size:14px;line-height:1.3;font-weight:500}
+  .ref{font-size:11px;letter-spacing:.06em;opacity:.55}
+  .obs{font-size:12px;opacity:.65;line-height:1.3}
+  .preco{font-size:18px;font-weight:700;margin-top:auto;padding-top:4px}
+  .btn{display:block;text-align:center;text-decoration:none;background:var(--magenta);color:#fff;font-weight:700;font-size:14px;padding:10px;border-radius:10px;margin-top:6px}
+  .vendida .foto img{filter:grayscale(1);opacity:.45}
+  .faixa{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%) rotate(-8deg);background:var(--bordo);color:var(--creme);text-align:center;font-weight:700;letter-spacing:.2em;padding:8px 0;font-size:15px}
+  .vendida .preco{text-decoration:line-through;opacity:.45}
+  .esgot{margin-top:6px;text-align:center;font-size:13px;font-weight:500;color:var(--bordo);padding:10px;border:1.5px dashed rgba(122,31,51,.4);border-radius:10px}
+  footer{text-align:center;padding:26px 20px 40px;font-size:14px;line-height:1.6}
+  footer .logo{font-size:38px}
+  footer a{color:var(--magenta);font-weight:700}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Caju</div>
+  <div class="sub">Semijoias VERI by Veridiana Quirino</div>
+  <div class="mes" id="mes"></div>
+  <p class="aviso">Peças únicas: só uma de cada! Gostou? Toque em <b>Quero essa</b> e fale com a gente no WhatsApp. Fotos ilustrativas.<br>Peças <b>Prata 925</b> são de prata de verdade. Peças <b>prateadas</b> têm banho.</p>
+</header>
+<nav id="filtros"></nav>
+<main id="lista"></main>
+<footer>
+  <div class="logo">Caju</div>
+  WhatsApp: <a href="https://wa.me/5515996782804">(15) 99678-2804</a>
+</footer>
+
+<script>
+/* ===== Coleção do mês: edite aqui ===== */
+const MES = "Coleção de Novembro";
+const WHATS = "5515996782804";
+const TIPOS = [
+  {id:"brincos",  nome:"Brincos",   cor:"#C2457A"},
+  {id:"colares",  nome:"Colares",   cor:"#5468B0"},
+  {id:"aneis",    nome:"Anéis",     cor:"#E2B13C"},
+  {id:"pulseiras",nome:"Pulseiras", cor:"#7A9473"},
+];
+const PECAS = [
+  {cod:"6221275", ref:"BR6363", tipo:"brincos", nome:"Brinco orgânico texturizado dourado", preco:139.00, foto:"img/B01.jpg", vendida:false},
+  {cod:"6135449", ref:"BR6143", tipo:"brincos", nome:"Brinco orgânico oval | prateado", preco:99.00, foto:"img/B02.jpg", vendida:false, obs:"Peça prateada. A foto mostra o modelo na versão dourada."},
+  {cod:"5806614", ref:"BR3095", tipo:"brincos", nome:"Brinco ponto de luz | dourado", preco:49.00, foto:"img/B03.jpg", vendida:false},
+  {cod:"5704489", ref:"BR5868", tipo:"brincos", nome:"Ear cuff zircônia colorida | dourado", preco:169.00, foto:"img/B04.jpg", vendida:false, obs:"Vendido em par."},
+  {cod:"5580541", ref:"BR5780", tipo:"brincos", nome:"Brinco ponto de luz coração pequeno | dourado", preco:69.00, foto:"img/B05.jpg", vendida:false},
+  {cod:"4847842", ref:"BR5276", tipo:"brincos", nome:"Argola efeito orgânico | prateado", preco:99.00, foto:"img/B06.jpg", vendida:false},
+  {cod:"6372350", ref:"BR6497", tipo:"brincos", nome:"Duo brincos coração cravejado | dourado", preco:74.00, foto:"img/B07.jpg", vendida:false, obs:"Kit com 2 pares."},
+  {cod:"5773209", ref:"BR3153", tipo:"brincos", nome:"Trio corações | dourado", preco:69.00, foto:"img/B08.jpg", vendida:false, obs:"Kit com 3 pares."},
+  {cod:"5935445", ref:"BR6176", tipo:"brincos", nome:"Argola micro zircônia | prateado", preco:169.00, foto:"img/B09.jpg", vendida:false},
+  {cod:"6086890", ref:"BR3550", tipo:"brincos", nome:"Mini argola olho grego | prateado", preco:47.00, foto:"img/B10.jpg", vendida:false},
+  {cod:"6369954", ref:"BR4991", tipo:"brincos", nome:"Brinco coração assimétrico | dourado", preco:89.00, foto:"img/B11.jpg", vendida:false, obs:"Acompanha só o brinco de coração. O ear cuff não está incluso."},
+  {cod:"6067881", ref:"BR103", tipo:"brincos", nome:"Brinco mini pérola | dourado", preco:17.00, foto:"img/B12.jpg", vendida:false, obs:"Peça bem pequena e delicada."},
+  {cod:"6241653", ref:"BR3028", tipo:"brincos", nome:"Mini argola pingente pérola | dourado", preco:49.00, foto:"img/B13.jpg", vendida:false},
+  {cod:"5569209", ref:"BR5788", tipo:"brincos", nome:"Brinco espiral cravejado | prateado", preco:119.00, foto:"img/B14.jpg", vendida:false},
+  {cod:"6206858", ref:"BR5200", tipo:"brincos", nome:"Brinco lacinho azul | dourado (linha Kids)", preco:59.00, foto:"img/B15.jpg", vendida:false, obs:"Linha Veri Kids. A pulseira da foto não está inclusa."},
+  {cod:"6199705", ref:"BR6471", tipo:"brincos", nome:"Ear cuff cravejado zircônia | dourado", preco:139.00, foto:"img/B16.jpg", vendida:false, obs:"Acompanha só o brinco cravejado (o da parte de baixo da orelha). O ear cuff liso de três linhas não está incluso."},
+  {cod:"6378001", ref:"CL69", tipo:"colares", nome:"Colar ponto de luz coração | dourado", preco:89.00, foto:"img/C01.jpg", vendida:false, obs:"Acompanha só o colar com pingente de coração. O colar de corações no fio transparente não está incluso."},
+  {cod:"6209181", ref:"CL1058", tipo:"colares", nome:"Colar ponto de luz | fio de nylon", preco:59.00, foto:"img/C02.jpg", vendida:false},
+  {cod:"6368417", ref:"CL1305", tipo:"colares", nome:"Colar coração vazado | dourado", preco:119.00, foto:"img/C03.jpg", vendida:false, obs:"Acompanha só o colar com coração vazado. A choker de corações não está inclusa."},
+  {cod:"5811159", ref:"CL1968", tipo:"colares", nome:"Colar pérolas com medalha cravejada zircônia | dourado", preco:119.00, foto:"img/C04.jpg", vendida:false, obs:"Acompanha só o colar de pérolas com medalha. O aro dourado e o anel não estão inclusos."},
+  {cod:"6001032", ref:"CL683", tipo:"colares", nome:"Colar gravatinha ponto de luz | prateado", preco:119.00, foto:"img/C05.jpg", vendida:false},
+  {cod:"6372608", ref:"CL2000", tipo:"colares", nome:"Colar zircônia colorida | dourado", preco:129.00, foto:"img/C06.jpg", vendida:false},
+  {cod:"5789680", ref:"CL1955", tipo:"colares", nome:"Colar fita dupla | dourado", preco:259.00, foto:"img/C07.jpg", vendida:false},
+  {cod:"6164520", ref:"CL2077", tipo:"colares", nome:"Colar zircônia champanhe | dourado", preco:99.00, foto:"img/C08.jpg", vendida:false},
+  {cod:"6336267", ref:"CL2019", tipo:"colares", nome:"Corrente de prata 925 | 45cm", preco:142.00, foto:"img/C09.jpg", vendida:false},
+  {cod:"6253347", ref:"CL2092", tipo:"colares", nome:"Colar ponto de luz zircônia | prateado", preco:99.00, foto:"img/C10.jpg", vendida:false, obs:"Acompanha só o colar com pingente ponto de luz. As duas chokers de zircônia não estão inclusas."},
+  {cod:"5780640", ref:"CL1485", tipo:"colares", nome:"Colar trançado cordão baiano | prateado", preco:239.00, foto:"img/C11.jpg", vendida:false},
+  {cod:"6373514", ref:"PL1664", tipo:"pulseiras", nome:"Pulseira colorida | dourado", preco:59.00, foto:"img/P01.jpg", vendida:false},
+  {cod:"5590573", ref:"PL1088", tipo:"pulseiras", nome:"Pulseira snake grossa | prateada", preco:169.00, foto:"img/P02.jpg", vendida:false, obs:"Acompanha só a pulseira snake (a mais larga). A pulseira de elos não está inclusa."},
+  {cod:"5999329", ref:"PL1135", tipo:"pulseiras", nome:"Pulseira cordão baiano fina | prateada", preco:119.00, foto:"img/P03.jpg", vendida:false},
+  {cod:"6336804", ref:"PL1490", tipo:"pulseiras", nome:"Pulseira mini esferas | Prata 925", preco:99.00, foto:"img/P04.jpg", vendida:false},
+  {cod:"5758723", ref:"PL920", tipo:"pulseiras", nome:"Pulseira riviera fina zircônia | prateada", preco:119.00, foto:"img/P05.jpg", vendida:false},
+];
+/* ====================================== */
+
+const brl = v => v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+document.getElementById("mes").textContent = MES;
+let filtro = "todos";
+
+function render(){
+  const tiposComPeca = TIPOS.filter(t => PECAS.some(p => p.tipo===t.id));
+  const nav = document.getElementById("filtros");
+  nav.innerHTML = "";
+  [{id:"todos",nome:"Todos"}, ...tiposComPeca].forEach(t=>{
+    const b = document.createElement("button");
+    b.textContent = t.nome; if(t.id===filtro) b.className="on";
+    b.onclick = ()=>{filtro=t.id; render(); window.scrollTo({top:0,behavior:"smooth"});};
+    nav.appendChild(b);
+  });
+  const main = document.getElementById("lista");
+  main.innerHTML = "";
+  tiposComPeca.filter(t => filtro==="todos" || t.id===filtro).forEach(t=>{
+    const itens = PECAS.filter(p=>p.tipo===t.id).sort((a,b)=>a.vendida-b.vendida);
+    const sec = document.createElement("section");
+    sec.innerHTML = `<h2><span class="dot" style="background:${t.cor}"></span>${t.nome}</h2><div class="grid"></div>`;
+    const grid = sec.querySelector(".grid");
+    itens.forEach(p=>{
+      const msg = encodeURIComponent(`Oi! Vi no catálogo da Caju e quero a peça ${p.cod} (${p.nome}, ref. ${p.ref}) - ${brl(p.preco)}. Ainda está disponível?`);
+      const c = document.createElement("div");
+      c.className = "card" + (p.vendida ? " vendida" : "");
+      c.innerHTML = `
+        <div class="foto"><img src="${p.foto}" alt="${p.nome}" loading="lazy"><span class="cod">${p.cod}</span>${p.vendida?'<div class="faixa">VENDIDA</div>':''}</div>
+        <div class="info">
+          <div class="nome">${p.nome}</div>
+          ${p.ref?`<div class="ref">Ref. VERI ${p.ref}</div>`:''}
+          ${p.obs?`<div class="obs">${p.obs}</div>`:''}
+          <div class="preco">${brl(p.preco)}</div>
+          ${p.vendida?'<div class="esgot">Essa já tem dona!</div>':`<a class="btn" href="https://wa.me/${WHATS}?text=${msg}">Quero essa</a>`}
+        </div>`;
+      grid.appendChild(c);
+    });
+    main.appendChild(sec);
+  });
+}
+render();
+</script>
+</body>
+</html>
