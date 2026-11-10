@@ -54,6 +54,13 @@
   footer{text-align:center;padding:26px 20px 40px;font-size:14px;line-height:1.6}
   footer .logo{font-size:38px}
   footer a{color:var(--magenta);font-weight:700}
+  .foto img{cursor:zoom-in}
+  #zoom{position:fixed;inset:0;z-index:50;background:rgba(31,42,77,.92);display:none;align-items:center;justify-content:center;flex-direction:column;padding:16px}
+  #zoom.on{display:flex}
+  #zoom img{max-width:100%;max-height:78vh;border-radius:12px;background:#fff}
+  #zoom .zt{color:#FBF5EA;margin-top:14px;text-align:center;font-size:15px;line-height:1.4}
+  #zoom .zt b{display:block;font-size:17px}
+  #zoom button{position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:50%;border:0;background:#FBF5EA;color:#1F2A4D;font-size:24px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -65,6 +72,7 @@
 </header>
 <nav id="filtros"></nav>
 <main id="lista"></main>
+<div id="zoom" role="dialog" aria-modal="true"><button aria-label="Fechar">×</button><img alt=""><div class="zt"></div></div>
 <footer>
   <div class="logo">Caju</div>
   WhatsApp: <a href="https://wa.me/5515996782804">(15) 99678-2804</a>
@@ -154,11 +162,21 @@ function render(){
           <div class="preco">${brl(p.preco)}</div>
           ${p.vendida?'<div class="esgot">Essa já tem dona!</div>':`<a class="btn" href="https://wa.me/${WHATS}?text=${msg}">Quero essa</a>`}
         </div>`;
+      c.querySelector(".foto img").onclick=()=>abrirZoom(p);
       grid.appendChild(c);
     });
     main.appendChild(sec);
   });
 }
+const zoom=document.getElementById("zoom");
+function abrirZoom(p){
+  zoom.querySelector("img").src=p.foto; zoom.querySelector("img").alt=p.nome;
+  zoom.querySelector(".zt").innerHTML=`<b>${p.nome}</b>${p.cod} · ${brl(p.preco)}${p.vendida?" · VENDIDA":""}`;
+  zoom.classList.add("on"); document.body.style.overflow="hidden";
+}
+function fecharZoom(){zoom.classList.remove("on"); document.body.style.overflow="";}
+zoom.onclick=e=>{ if(e.target.tagName!=="IMG") fecharZoom(); };
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") fecharZoom(); });
 render();
 </script>
 </body>
