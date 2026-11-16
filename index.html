@@ -57,10 +57,14 @@
   .foto img{cursor:zoom-in}
   #zoom{position:fixed;inset:0;z-index:50;background:rgba(31,42,77,.92);display:none;align-items:center;justify-content:center;flex-direction:column;padding:16px}
   #zoom.on{display:flex}
+  .nfotos{position:absolute;bottom:10px;right:10px;background:rgba(31,42,77,.85);color:#FBF5EA;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px}
+  #zoom .nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:rgba(251,245,234,.9);color:#1F2A4D;font-size:26px;line-height:44px;cursor:pointer;display:none}
+  #zoom .prev{left:10px} #zoom .next{right:10px;left:auto;top:50%}
+  #zoom.multi .nav{display:block}
   #zoom img{max-width:100%;max-height:78vh;border-radius:12px;background:#fff}
   #zoom .zt{color:#FBF5EA;margin-top:14px;text-align:center;font-size:15px;line-height:1.4}
   #zoom .zt b{display:block;font-size:17px}
-  #zoom button{position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:50%;border:0;background:#FBF5EA;color:#1F2A4D;font-size:24px;cursor:pointer}
+  #zoom .fechar{position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:50%;border:0;background:#FBF5EA;color:#1F2A4D;font-size:24px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -72,7 +76,7 @@
 </header>
 <nav id="filtros"></nav>
 <main id="lista"></main>
-<div id="zoom" role="dialog" aria-modal="true"><button aria-label="Fechar">×</button><img alt=""><div class="zt"></div></div>
+<div id="zoom" role="dialog" aria-modal="true"><button class="fechar" aria-label="Fechar">×</button><button class="nav prev" aria-label="Foto anterior">‹</button><button class="nav next" aria-label="Próxima foto">›</button><img alt=""><div class="zt"></div></div>
 <footer>
   <div class="logo">Caju</div>
   WhatsApp: <a href="https://wa.me/5515996782804">(15) 99678-2804</a>
@@ -97,7 +101,7 @@ const PECAS = [
   {cod:"BR5780", item:"5580541", tipo:"brincos", nome:"Brinco ponto de luz coração pequeno | dourado", preco:69.00, foto:"img/B05.jpg", vendida:false},
   {cod:"BR5276", item:"4847842", tipo:"brincos", nome:"Argola efeito orgânico | prateado", preco:99.00, foto:"img/B06.jpg", vendida:true},
   {cod:"BR6497", item:"6372350", tipo:"brincos", nome:"Duo brincos coração cravejado | dourado", preco:74.00, foto:"img/B07.jpg", vendida:false, obs:"Kit com 2 pares."},
-  {cod:"BR3153", item:"5773209", tipo:"brincos", nome:"Trio corações | dourado", preco:69.00, foto:"img/B08.jpg", vendida:false, obs:"Kit com 3 pares."},
+  {cod:"BR3153", item:"5773209", tipo:"brincos", nome:"Trio corações | dourado", preco:69.00, foto:"img/B08.jpg", fotos:["img/B08.jpg","img/BR3153-2.jpg"], vendida:false, obs:"Kit com 3 pares."},
   {cod:"BR6176", item:"5935445", tipo:"brincos", nome:"Argola micro zircônia | prateado", preco:169.00, foto:"img/B09.jpg", vendida:false},
   {cod:"BR3550", item:"6086890", tipo:"brincos", nome:"Mini argola olho grego | prateado", preco:47.00, foto:"img/B10.jpg", vendida:false},
   {cod:"BR4991", item:"6369954", tipo:"brincos", nome:"Brinco coração assimétrico | dourado", preco:89.00, foto:"img/B11.jpg", vendida:false, obs:"Acompanha só o brinco de coração. O ear cuff não está incluso."},
@@ -161,7 +165,7 @@ function render(){
       const c = document.createElement("div");
       c.className = "card" + (p.vendida ? " vendida" : "");
       c.innerHTML = `
-        <div class="foto"><img src="${p.foto}" alt="${p.nome}" loading="lazy"><span class="cod">${p.cod}</span>${p.vendida?'<div class="faixa">VENDIDA</div>':''}</div>
+        <div class="foto"><img src="${p.foto}" alt="${p.nome}" loading="lazy"><span class="cod">${p.cod}</span>${(p.fotos||[]).length>1?`<span class="nfotos">${p.fotos.length} fotos</span>`:""}${p.vendida?'<div class="faixa">VENDIDA</div>':''}</div>
         <div class="info">
           <div class="nome">${p.nome}</div>
           ${p.obs?`<div class="obs">${p.obs}</div>`:''}
@@ -175,14 +179,23 @@ function render(){
   });
 }
 const zoom=document.getElementById("zoom");
-function abrirZoom(p){
-  zoom.querySelector("img").src=p.foto; zoom.querySelector("img").alt=p.nome;
-  zoom.querySelector(".zt").innerHTML=`<b>${p.nome}</b>${p.cod} · ${brl(p.preco)}${p.vendida?" · VENDIDA":""}`;
-  zoom.classList.add("on"); document.body.style.overflow="hidden";
+let zp=null, zi=0;
+function mostrar(){
+  const fs=zp.fotos||[zp.foto];
+  zoom.querySelector("img").src=fs[zi]; zoom.querySelector("img").alt=zp.nome;
+  zoom.querySelector(".zt").innerHTML=`<b>${zp.nome}</b>${zp.cod} · ${brl(zp.preco)}${zp.vendida?" · VENDIDA":""}${fs.length>1?` · foto ${zi+1} de ${fs.length}`:""}`;
+  zoom.classList.toggle("multi",fs.length>1);
 }
+function abrirZoom(p){ zp=p; zi=0; mostrar(); zoom.classList.add("on"); document.body.style.overflow="hidden"; }
+function passar(d){ const n=(zp.fotos||[zp.foto]).length; if(n<2) return; zi=(zi+d+n)%n; mostrar(); }
 function fecharZoom(){zoom.classList.remove("on"); document.body.style.overflow="";}
-zoom.onclick=e=>{ if(e.target.tagName!=="IMG") fecharZoom(); };
-document.addEventListener("keydown",e=>{ if(e.key==="Escape") fecharZoom(); });
+zoom.querySelector(".prev").onclick=e=>{e.stopPropagation(); passar(-1);};
+zoom.querySelector(".next").onclick=e=>{e.stopPropagation(); passar(1);};
+zoom.onclick=e=>{ if(e.target.tagName!=="IMG" && !e.target.classList.contains("nav")) fecharZoom(); };
+let tx=null;
+zoom.addEventListener("touchstart",e=>{ if(e.touches.length===1) tx=e.touches[0].clientX; },{passive:true});
+zoom.addEventListener("touchend",e=>{ if(tx===null) return; const dx=e.changedTouches[0].clientX-tx; tx=null; if(Math.abs(dx)>50) passar(dx<0?1:-1); });
+document.addEventListener("keydown",e=>{ if(!zoom.classList.contains("on")) return; if(e.key==="Escape") fecharZoom(); if(e.key==="ArrowRight") passar(1); if(e.key==="ArrowLeft") passar(-1); });
 render();
 </script>
 </body>
