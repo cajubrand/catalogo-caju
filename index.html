@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Caju | Catálogo de Semijoias</title>
-<meta name="description" content="Catálogo Caju: semijoias VERI by Veridiana Quirino. Peças únicas, peça a sua pelo WhatsApp.">
+<title>Cajú | Catálogo de Semijoias</title>
+<link rel="icon" href="img/favicon.png">
+<meta name="description" content="Catálogo Cajú: semijoias VERI by Veridiana Quirino. Peças únicas, peça a sua pelo WhatsApp.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Caju | Catálogo de Semijoias">
+<meta property="og:title" content="Cajú | Catálogo de Semijoias">
 <meta property="og:description" content="Semijoias VERI by Veridiana Quirino. Peças únicas, peça a sua pelo WhatsApp.">
 <meta property="og:image" content="https://cajubrand.github.io/catalogo-caju/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -17,17 +18,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --creme:#FBF5EA; --magenta:#C2457A; --bordo:#7A1F33; --noite:#1F2A4D;
-    --petala:#5468B0; --mostarda:#E2B13C; --salvia:#7A9473;
+    --creme:#FBF5EA; --magenta:#C65081; --bordo:#7D2337; --noite:#1D2B4D;
+    --petala:#5669B1; --mostarda:#E2B548; --salvia:#859C7D;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--creme);color:var(--noite);font-family:'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-  header{text-align:center;padding:36px 20px 18px}
+  header{background:var(--salvia);text-align:center;padding:36px 20px 18px}
   .logo{font-family:'Caveat Brush',cursive;font-size:64px;line-height:1;color:var(--bordo)}
   .sub{margin-top:6px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--noite);opacity:.75}
   .mes{display:inline-block;margin-top:14px;padding:5px 14px;border-radius:999px;background:var(--noite);color:var(--creme);font-size:13px;font-weight:500}
   .aviso{max-width:560px;margin:14px auto 0;font-size:13px;line-height:1.45;opacity:.75}
-  nav{position:sticky;top:0;z-index:5;background:var(--creme);padding:10px 14px;display:flex;gap:8px;overflow-x:auto;justify-content:center;border-bottom:1px solid rgba(31,42,77,.08)}
+  nav{position:sticky;top:0;z-index:5;background:var(--creme);padding:10px 14px;display:flex;gap:8px;overflow-x:auto;justify-content:flex-start;border-bottom:1px solid rgba(29,43,77,.08)}
   nav button{flex:none;font:500 14px 'DM Sans',sans-serif;padding:8px 16px;border-radius:999px;border:1.5px solid var(--noite);background:transparent;color:var(--noite);cursor:pointer}
   nav button.on{background:var(--noite);color:var(--creme)}
   main{max-width:1100px;margin:0 auto;padding:18px 14px 40px}
@@ -37,7 +38,7 @@
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
   @media(min-width:720px){.grid{grid-template-columns:repeat(3,1fr)}}
   @media(min-width:980px){.grid{grid-template-columns:repeat(4,1fr)}}
-  .card{background:#fff;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(31,42,77,.06),0 6px 18px rgba(31,42,77,.06)}
+  .card{background:#fff;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(29,43,77,.06),0 6px 18px rgba(29,43,77,.06)}
   .foto{position:relative;aspect-ratio:1/1;background:#f1ebe0}
   .foto img{width:100%;height:100%;object-fit:cover;display:block}
   .cod{position:absolute;top:10px;left:10px;background:var(--creme);color:var(--noite);font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px}
@@ -51,25 +52,30 @@
   .faixa{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%) rotate(-8deg);background:var(--bordo);color:var(--creme);text-align:center;font-weight:700;letter-spacing:.2em;padding:8px 0;font-size:15px}
   .vendida .preco{text-decoration:line-through;opacity:.45}
   .esgot{margin-top:6px;text-align:center;font-size:13px;font-weight:500;color:var(--bordo);padding:10px;border:1.5px dashed rgba(122,31,51,.4);border-radius:10px}
-  footer{text-align:center;padding:26px 20px 40px;font-size:14px;line-height:1.6}
+  footer{background:var(--salvia);text-align:center;padding:26px 20px 40px;font-size:14px;line-height:1.6}
   footer .logo{font-size:38px}
   footer a{color:var(--magenta);font-weight:700}
   .foto img{cursor:zoom-in}
-  #zoom{position:fixed;inset:0;z-index:50;background:rgba(31,42,77,.92);display:none;align-items:center;justify-content:center;flex-direction:column;padding:16px}
+  #zoom{position:fixed;inset:0;z-index:50;background:rgba(29,43,77,.92);display:none;align-items:center;justify-content:center;flex-direction:column;padding:16px}
   #zoom.on{display:flex}
-  .nfotos{position:absolute;bottom:10px;right:10px;background:rgba(31,42,77,.85);color:#FBF5EA;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px}
-  #zoom .nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:rgba(251,245,234,.9);color:#1F2A4D;font-size:26px;line-height:44px;cursor:pointer;display:none}
+  .nfotos{position:absolute;bottom:10px;right:10px;background:rgba(29,43,77,.85);color:#FBF5EA;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px}
+  #zoom .nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:rgba(251,245,234,.9);color:#1D2B4D;font-size:26px;line-height:44px;cursor:pointer;display:none}
   #zoom .prev{left:10px} #zoom .next{right:10px;left:auto;top:50%}
   #zoom.multi .nav{display:block}
   #zoom img{max-width:100%;max-height:78vh;border-radius:12px;background:#fff}
   #zoom .zt{color:#FBF5EA;margin-top:14px;text-align:center;font-size:15px;line-height:1.4}
   #zoom .zt b{display:block;font-size:17px}
-  #zoom .fechar{position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:50%;border:0;background:#FBF5EA;color:#1F2A4D;font-size:24px;cursor:pointer}
+  #zoom .fechar{position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:50%;border:0;background:#FBF5EA;color:#1D2B4D;font-size:24px;cursor:pointer}
+  .logo-img{width:min(240px,62vw);height:auto;display:block;margin:0 auto}
+  .logo-foot{width:110px;height:auto;margin-bottom:8px}
+  header .aviso{opacity:.9}
+  footer a{color:var(--bordo)}
+  nav button:first-child{margin-left:auto} nav button:last-child{margin-right:auto}
 </style>
 </head>
 <body>
 <header>
-  <div class="logo">Caju</div>
+  <img class="logo-img" src="img/logo-caju.png" alt="Cajú">
   <div class="sub">Semijoias VERI by Veridiana Quirino</div>
   <div class="mes" id="mes"></div>
   <p class="aviso">Peças únicas: só uma de cada! Gostou? Toque em <b>Quero essa</b> e fale com a gente no WhatsApp. Fotos ilustrativas.<br>Banho de Ródio ou Ouro. Prata 925.</p>
@@ -78,7 +84,7 @@
 <main id="lista"></main>
 <div id="zoom" role="dialog" aria-modal="true"><button class="fechar" aria-label="Fechar">×</button><button class="nav prev" aria-label="Foto anterior">‹</button><button class="nav next" aria-label="Próxima foto">›</button><img alt=""><div class="zt"></div></div>
 <footer>
-  <div class="logo">Caju</div>
+  <img class="logo-foot" src="img/logo-caju.png" alt="Cajú"><br>
   WhatsApp: <a href="https://wa.me/5515996782804">(15) 99678-2804</a>
 </footer>
 
@@ -87,11 +93,11 @@
 const MES = "Coleção de Novembro";
 const WHATS = "5515996782804";
 const TIPOS = [
-  {id:"brincos",  nome:"Brincos",   cor:"#C2457A"},
-  {id:"colares",  nome:"Colares",   cor:"#5468B0"},
-  {id:"aneis",    nome:"Anéis",     cor:"#7A1F33"},
-  {id:"pulseiras",nome:"Pulseiras", cor:"#7A9473"},
-  {id:"kids",     nome:"Veri Kids", cor:"#E2B13C"},
+  {id:"brincos",  nome:"Brincos",   cor:"#C65081"},
+  {id:"colares",  nome:"Colares",   cor:"#5669B1"},
+  {id:"aneis",    nome:"Anéis",     cor:"#7D2337"},
+  {id:"pulseiras",nome:"Pulseiras", cor:"#859C7D"},
+  {id:"kids",     nome:"Veri Kids", cor:"#E2B548"},
 ];
 const PECAS = [
   {cod:"BR6363", item:"6221275", tipo:"brincos", nome:"Brinco orgânico texturizado dourado", preco:139.00, foto:"img/B01.jpg", vendida:false},
@@ -161,7 +167,7 @@ function render(){
     sec.innerHTML = `<h2><span class="dot" style="background:${t.cor}"></span>${t.nome}</h2><div class="grid"></div>`;
     const grid = sec.querySelector(".grid");
     itens.forEach(p=>{
-      const msg = encodeURIComponent(`Oi! Vi no catálogo da Caju e quero a peça ${p.cod} (${p.nome}) - ${brl(p.preco)}. Ainda está disponível?`);
+      const msg = encodeURIComponent(`Oi! Vi no catálogo da Cajú e quero a peça ${p.cod} (${p.nome}) - ${brl(p.preco)}. Ainda está disponível?`);
       const c = document.createElement("div");
       c.className = "card" + (p.vendida ? " vendida" : "");
       c.innerHTML = `
