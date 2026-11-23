@@ -31,7 +31,7 @@ Os dados ficam no topo do `<script>` do `index.html`:
 | `nome` | Nome curto + ` \| dourado`, ` \| prateado` ou ` \| Prata 925`. |
 | `preco` | Número. **Sempre o da planilha**, nunca o do site da VERI. |
 | `foto` | Primeira foto exibida. |
-| `fotos` | Opcional, quando houver mais de uma foto: `["img/a.jpg","img/b.jpg"]`. **A foto no corpo (orelha, pescoço, pulso) vem primeiro.** |
+| `fotos` | Opcional, quando houver mais de uma foto: `["img/a.jpg","img/b.jpg"]`. **A foto no corpo (orelha, pescoço, pulso) vem primeiro**, exceto quando a mesma foto no corpo é usada em outra peça: aí a foto só da peça vem primeiro, para diferenciar. |
 | `vendida` | `true` mostra a faixa VENDIDA e manda a peça para o fim da seção. |
 | `obs` | Opcional. Aviso curto embaixo do nome. |
 
